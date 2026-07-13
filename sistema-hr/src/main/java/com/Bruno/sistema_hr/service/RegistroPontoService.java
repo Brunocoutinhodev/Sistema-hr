@@ -1,4 +1,3 @@
-
 package com.Bruno.sistema_hr.service;
 
 import com.Bruno.sistema_hr.model.Freelancer;
@@ -10,18 +9,24 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegistroPontoService {
-    
+
     @Autowired
     private RegistroPontoRepository ponto;
-    
-    public RegistroPonto salvarPonto(RegistroPonto registro){
+
+    public RegistroPonto salvarPonto(RegistroPonto registro) {
         return ponto.save(registro);
     }
-    public List <RegistroPonto> ListarTodos(){
-       return ponto.findAll();
+
+    public List<RegistroPonto> ListarTodos() {
+        return ponto.findAll();
     }
-    public List<RegistroPonto> ListarFreelancer(Freelancer registrosUnicos){
+
+    public List<RegistroPonto> ListarFreelancer(Freelancer registrosUnicos) {
         return ponto.findByFreelancer(registrosUnicos);
     }
-}
 
+    public void DeletePonto(Long id) {
+        ponto.deleteById(id);
+
+    }
+}
