@@ -27,6 +27,11 @@ public class RegistroPontoService {
 
     public void DeletePonto(Long id) {
         ponto.deleteById(id);
-
+    }
+    public RegistroPonto atualizarPonto(Long id,RegistroPonto novosDados){
+            RegistroPonto pontoExistente = ponto.findById(id).get();
+            pontoExistente.setData_dia(novosDados.getData_dia());
+            pontoExistente.setTipo(novosDados.getTipo());
+            return ponto.save(pontoExistente);
     }
 }
