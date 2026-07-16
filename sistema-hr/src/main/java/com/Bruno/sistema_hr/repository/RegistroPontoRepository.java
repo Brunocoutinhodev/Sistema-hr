@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface RegistroPontoRepository extends JpaRepository <RegistroPonto,Long>{
     
     List<RegistroPonto> findByFreelancer(Freelancer freelancer);
+   
+    List<RegistroPonto> findByFreelancerId(Long id);
 }

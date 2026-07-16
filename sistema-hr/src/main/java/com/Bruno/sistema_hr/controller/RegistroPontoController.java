@@ -3,6 +3,7 @@ package com.Bruno.sistema_hr.controller;
 import com.Bruno.sistema_hr.model.Freelancer;
 import com.Bruno.sistema_hr.model.RegistroPonto;
 import com.Bruno.sistema_hr.service.RegistroPontoService;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -38,17 +40,20 @@ public class RegistroPontoController {
 
         return service.ListarFreelancer(freelancerBusca);
     }
+
     @DeleteMapping("/{id}")
-    public void deletarPonto (@PathVariable Long id){
+    public void deletarPonto(@PathVariable Long id) {
         service.DeletePonto(id);
     }
+
     @PutMapping("/{id}")
     public RegistroPonto atualizarPonto(@PathVariable Long id, @RequestBody RegistroPonto novosDados) {
         return service.atualizarPonto(id, novosDados);
 
     }
 
-       
-
-    
+    @GetMapping("/freelancer/{id}/calculo-horas")
+    public String calcularHoras(@PathVariable Long id, @RequestParam LocalDateTime data_dia) {
+        return service.calcularHoras(id, data_dia);
+    }
 }
